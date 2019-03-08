@@ -1,13 +1,12 @@
 sudo: required
 services:
-  - docker
+- docker
 before_install:
-  - openssl aes-256-cbc -K $encrypted_a89024f51d44_key -iv $encrypted_a89024f51d44_iv
-    -in gce.json.enc -out gce.json -d
-  - docker build -t expo-lux/docker-r3act -f Dockerfile.dev .
+- openssl aes-256-cbc -K $encrypted_682bc9df8ebb_key -iv $encrypted_682bc9df8ebb_iv
+  -in gce.json.enc -out gce.json -d
+- docker build -t expo-lux/docker-r3act -f Dockerfile.dev .
 script:
-  - docker run expo-lux/docker-r3act npm run test -- --coverage
-
+- docker run expo-lux/docker-r3act npm run test -- --coverage
 deploy:
   provider: gae
   keyfile: gce.json
